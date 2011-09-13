@@ -45,7 +45,7 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.mortbay.jetty</groupId>
+      <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-distribution</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
