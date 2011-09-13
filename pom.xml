@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mortbay.jetty.dist</groupId>
+  <artifactId>jetty-distribution-deb</artifactId>
+  <name>Jetty :: Unix Distributions :: Debian</name>
+  <version>7.5.1.v20110908</version>
+  <packaging>deb</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.mortbay.jetty.toolchain</groupId>
+        <artifactId>unix-maven-plugin</artifactId>
+        <version>1.0-alpha-6.1</version>
+        <extensions>true</extensions>
+        <configuration>
+          <contact>Webtide LLC</contact>
+          <contactEmail>jetty-dev@eclipse.org</contactEmail>
+          <name>Core Jetty ${project.version} Distribution</name>
+          <description>Jetty provides an Web server and javax.servlet
+            container, plus support for Web Sockets, OSGi, JMX, JNDI,
+            JASPI, AJP and many other integrations. These components are
+            open source and available for commercial use and
+            distribution.</description>
+          <deb>
+            <useFakeroot>false</useFakeroot>
+            <priority>optional</priority>
+            <section>java</section>
+          </deb>
+           <packages>
+            <package>
+              <id>default</id>
+              <assembly>
+                <extractArtifact>
+                  <artifact>org.eclipse.jetty:jetty-distribution:zip</artifact>
+                  <to>/opt/jetty</to>
+                  <pattern>/jetty-distribution-${project.version}(.*)</pattern>
+                  <replacement>$1</replacement>
+                 </extractArtifact>
+              </assembly>
+            </package>
+          </packages>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty-distribution</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+  </dependencies>
+</project>
